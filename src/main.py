@@ -1,5 +1,6 @@
 import prime
 import fibonacci
+import collatz
 
 go_on: str = "Y"
 
@@ -9,6 +10,7 @@ while go_on == "Y":
     print("2. Generate a Prime Number")
     print("3. Generate a Sequence of Prime Number")
     print("4. Generate Prime Factors of a Given Number")
+    print("5. Generate a Collatz Sequence")
     print("0. Quit")
     print("-------------------------------------------------\n")
 
@@ -87,6 +89,27 @@ while go_on == "Y":
             x = int(input("Enter the number whose prime factors you want to generate? "))
             prime_fac_seq = prime.gen_prime_factors(x)
             print(f"Prime Sequence -----> {prime_fac_seq}")
+
+            continue_gen = "Dummy"
+            while continue_gen not in ["Y", "N"]:
+                continue_gen = input("Do you want to continue? (Y/N) ")
+                continue_gen = continue_gen[0].upper()
+                if continue_gen not in ["Y", "N"]:
+                    print("Invalid Answer! Please try again...")
+
+    elif choice == 5:
+        continue_gen = "Y"
+
+        while continue_gen == "Y":
+            starting_point = int(input("What do you want as the starting point of your collatz sequence? "))
+
+            if starting_point < 1:
+                print(f"Starting point of a collatz sequence can either be 0 or 1")
+                print(f"{starting_point} is not a valid starting point")
+
+            else:
+                collatz_seq = collatz.generate_collatz(starting_point)
+                print(f"Collatz Sequence -----> {collatz_seq}")
 
             continue_gen = "Dummy"
             while continue_gen not in ["Y", "N"]:
