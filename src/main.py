@@ -11,6 +11,7 @@ while go_on == "Y":
     print("3. Generate a Sequence of Prime Number")
     print("4. Generate Prime Factors of a Given Number")
     print("5. Generate a Collatz Sequence")
+    print("6. Generate the largest Collatz Sequence under a defined number")
     print("0. Quit")
     print("-------------------------------------------------\n")
 
@@ -108,8 +109,31 @@ while go_on == "Y":
                 print(f"{starting_point} is not a valid starting point")
 
             else:
-                collatz_seq = collatz.generate_collatz(starting_point)
+                collatz_seq_len, collatz_seq = collatz.generate_collatz(starting_point)
                 print(f"Collatz Sequence -----> {collatz_seq}")
+                print(f"Length of the collatz sequence -----> {collatz_seq_len}")
+
+            continue_gen = "Dummy"
+            while continue_gen not in ["Y", "N"]:
+                continue_gen = input("Do you want to continue? (Y/N) ")
+                continue_gen = continue_gen[0].upper()
+                if continue_gen not in ["Y", "N"]:
+                    print("Invalid Answer! Please try again...")
+
+    elif choice == 6:
+        continue_gen = "Y"
+
+        while continue_gen == "Y":
+            max_starting_point = int(input("Under which number do you want to generate the largest collatz sequence? "))
+
+            if max_starting_point < 1:
+                print(f"Maximum starting point of a collatz sequence must be greater than or equal to 1")
+                print(f"{max_starting_point} is not a valid starting point")
+
+            else:
+                largest_collatz_seq_len, largest_collatz_seq = collatz.gen_largest_collatz_seq(max_starting_point)
+                print(f"Largest collatz Sequence under {max_starting_point} -----> {largest_collatz_seq}")
+                print(f"Length of largest collatz sequence under {max_starting_point} -----> {largest_collatz_seq_len}")
 
             continue_gen = "Dummy"
             while continue_gen not in ["Y", "N"]:
@@ -121,5 +145,9 @@ while go_on == "Y":
     else:
         print("Invalid Choice! Try Again...")
 
-    go_on = input("Do you want to choose a different puzzle? (Y/N) ")
-    go_on = go_on[0].upper()
+    go_on = "Dummy"
+    while go_on not in ["Y", "N"]:
+        go_on = input("Do you want to choose a different puzzle? (Y/N) ")
+        go_on = go_on[0].upper()
+        if go_on not in ["Y", "N"] :
+            print("Invalid Answer! Please try again...")
