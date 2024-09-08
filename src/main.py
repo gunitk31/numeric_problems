@@ -1,6 +1,7 @@
 import prime
 import fibonacci
 import collatz
+import palindrome
 
 go_on: str = "Y"
 
@@ -12,6 +13,7 @@ while go_on == "Y":
     print("4. Generate Prime Factors of a Given Number")
     print("5. Generate a Collatz Sequence")
     print("6. Generate the largest Collatz Sequence under a defined number")
+    print("7. Generate the largest palindrome product of 2 numbers")
     print("0. Quit")
     print("-------------------------------------------------\n")
 
@@ -134,6 +136,28 @@ while go_on == "Y":
                 largest_collatz_seq_len, largest_collatz_seq = collatz.gen_largest_collatz_seq(max_starting_point)
                 print(f"Largest collatz Sequence under {max_starting_point} -----> {largest_collatz_seq}")
                 print(f"Length of largest collatz sequence under {max_starting_point} -----> {largest_collatz_seq_len}")
+
+            continue_gen = "Dummy"
+            while continue_gen not in ["Y", "N"]:
+                continue_gen = input("Do you want to continue? (Y/N) ")
+                continue_gen = continue_gen[0].upper()
+                if continue_gen not in ["Y", "N"]:
+                    print("Invalid Answer! Please try again...")
+
+    elif choice == 7:
+        continue_gen = "Y"
+
+        while continue_gen == "Y":
+            number_length = int(input("What do you want as the length of the 2 numbers? "))
+
+            if number_length < 1:
+                print(f"Maximum length of number must be greater than or equal to 1")
+                print(f"{number_length} is not a valid starting point")
+
+            else:
+                product, num1, num2 = palindrome.get_largest_palindrome_product(number_length)
+                print(f"Largest Palindrome Product of 2 numbers of length {number_length} -----> {product}")
+                print(f"The number {product} is the product of the 2 numbers, {num1} and {num2}")
 
             continue_gen = "Dummy"
             while continue_gen not in ["Y", "N"]:
